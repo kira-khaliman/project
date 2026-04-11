@@ -1,3 +1,4 @@
+#pragma once
 class IFigure2D{
 public:
   virtual float square() = 0;
