@@ -7,9 +7,6 @@ bool Triangle::isValid() const {
 }
 
 double Triangle::getArea() const {
-    if (!isValid()) {
-        return 0.0; 
-    }
     double p = getPerimeter() / 2.0; 
     return sqrt(p * (p - a) * (p - b) * (p - c)); 
 }

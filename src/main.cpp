@@ -1,55 +1,75 @@
 #include <iostream>
 #include <memory>
 #include <string>
+#include "circle.h"
+#include "rectangle.h"
+#include "triangle.h"
+#include "trapezoid.h"
+#include "ngon.h"
 
 int main(){
+    std::cout<<"WARNING! enter only positive values\n";
     std::string s;
-    std::unique_ptr<Shape> shape;
-    std::cout<<"choose figure: 
-                circle, sphere, parallelepiped, rectangle, triangle, trapezoid, n-gon\n";
+    std::cout<<"choose figure: circle, sphere, parallelepiped, rectangle, triangle, trapezoid, n-gon\n";
     std::cin >> s;
-    switch (s){
-        case "circle": 
-            int r;
-            std::cout<<"enter the radius: ";
-            std::cin>>r;
-            shape = std::make_unique<Circle>(r);
-            std::cout<<"the circumference length is \n";
-            std::cout<<"the square is \n";
-            break;
+    if (s == "circle"){
+        double r;
+        std::cout<<"enter the radius: ";
+        std::cin>>r;
+        Circle circle(r);
+        std::cout<<"the circumference length is " << circle.getCircumference() << std::endl;
+        std::cout<<"the square is " << circle.getArea() << std::endl;
+    }
+    else if(s == "rectangle"){
+        double a,b;
+        std::cout<<"enter the sides: ";
+        std::cin>>a >> b;
+        Rectangle rectangle(a, b);
+        std::cout<<"the perimetr is " << rectangle.getPerimeter() << std::endl;
+        std::cout<<"the square is " << rectangle.getArea() << std::endl;
+    }
+    else if(s == "triangle"){
+        double a,b, c;
+        std::cout<<"enter the 3 sides: ";
+        std::cin>>a >> b >> c;
+        Triangle triangle(a, b, c);
+        if (triangle.isValid() == false){
+            std::cout<<"A triangle with such sides does not exist.\n";
+        }
+        else{
+            std::cout<<"the perimetr is " << triangle.getPerimeter() << std::endl;
+            std::cout<<"the square is " << triangle.getArea() << std::endl;
+        }   
+    }
+    else if(s == "trapezoid"){
+        double a, b, h;
+        std::cout<<"enter the bases: ";
+        std::cin>>a >> b;
+        std::cout << "\nenter height: ";
+        std::cin >> h;
+        Trapezoid trapezoid(a, b, h);
+        std::cout<<"the perimetr is " << trapezoid.getPerimeter() << std::endl;
+        std::cout<<"the square is " << trapezoid.getArea() << std::endl;
+    }
+    else if(s == "n-gon"){
+        int n;
+        double a;
+        std::cout << "enter number of sides: ";
+        std::cin >> n;
+        std::cout << "\nenter side: ";
+        std::cin >> a;
+        while (n < 3){
+            std::count << "number of sides must be more than 2\n";
+            std::cout << "enter number of sides: ";
+            std::cin >> n;
+        }
+        NGon ngon(n, a);
+        std::cout<<"the perimetr is " << ngon.getPerimeter() << std::endl;
+        std::cout<<"the square is " << ngon.getArea() << std::endl;
+    }
         
-        case "rectangle":
-            int a, b;
-            std::cout<<"enter sides: ";
-            std::cin>>a >> b;
-            shape = std::make_unique<Rectangle>(a, b);
-            std::cout<<"the perimetr is \n";
-            std::cout<<"the square is \n";
-            break;
-        case "triangle":
-            int ;
-            std::cout<<"enter : ";
-            std::cin>>;
-            shape = std::make_unique<Triangle>();
-            std::cout<<"the perimetr is \n";
-            std::cout<<"the square is \n";
-            break;
-        case "trapezoid":
-            int ;
-            std::cout<<"enter : ";
-            std::cin>>;
-            shape = std::make_unique<Trapezoid>();
-            std::cout<<"the perimetr is \n";
-            std::cout<<"the square is \n";
-            break;
-        case "n-gon":
-            int ;
-            std::cout<<"enter : ";
-            std::cin>>;
-            shape = std::make_unique<N_gon>();
-            std::cout<<"the perimetr is \n";
-            std::cout<<"the square is \n";
-            break;
+    switch (s){
+    
         case "sphere":
             int r;
             std::cout<<"enter radius: ";
