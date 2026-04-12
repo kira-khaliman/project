@@ -67,25 +67,21 @@ int main(){
         std::cout<<"the perimetr is " << ngon.getPerimeter() << std::endl;
         std::cout<<"the square is " << ngon.getArea() << std::endl;
     }
-        
-    switch (s){
-    
-        case "sphere":
-            int r;
-            std::cout<<"enter radius: ";
-            std::cin>>r;
-            shape = std::make_unique<Sphere>();
-            std::cout<<"the square is \n";
-            std::cout<<"the volume is \n";
-            break;
-        case "parallelepiped":
-            int ;
-            std::cout<<"enter : ";
-            std::cin>>;
-            shape = std::make_unique<Parallelepiped>();
-            std::cout<<"the square is \n";
-            std::cout<<"the volume is \n";
-            break;
+    else if(s == "sphere"){
+        float r;
+        std::cout<<"enter the radius: ";
+        std::cin>>r;
+        Ball sphere(r);
+        std::cout<<"the volume is " << sphere.volume() << std::endl;
+        std::cout<<"the square is " << sphere.square() << std::endl;
+    }
+    else if(s == "parallelepiped"){
+        float a, b, c;
+        std::cout<<"enter the sides: ";
+        std::cin>> a >> b >> c;
+        Parallelepiped parallelepiped(a, b, c);
+        std::cout<<"the volume is " << parallelepiped.volume() << std::endl;
+        std::cout<<"the square is " << parallelepiped.square() << std::endl;
     }
     
 }
