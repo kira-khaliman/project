@@ -4,7 +4,7 @@
 
 Circle::Circle(double r): radius(r){
 	if (radius < 0){
-		std::cerr << "Ошибка. Отрицательного радиуса не существует" << std::endl;
+		std::cout << "Ошибка. Отрицательного радиуса не существует" << std::endl;
 		radius = 0;
 	}
 }
